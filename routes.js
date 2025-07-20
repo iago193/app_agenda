@@ -6,8 +6,4 @@ const route = express.Router();
 
 route.get('/', paginaInicial);
 
-route.get('/contato', paginaInicialContato);
-
-route.post('/', tratarPost);
-
 export { route as Router };

@@ -1,14 +1,66 @@
-<h2>com csrf Token</h2>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Agenda</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-<form method="POST" action="/">
-  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-  <input type="text">
-  <button type="submit">Enviar</button>
-</form>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+      </ul>
 
-<h2>sem csrf Token </h2>
+    </div>
+  </div>
+</nav>
 
-<form method="POST" action="/">
-  <input type="text">
-  <button type="submit">Enviar</button>
-</form>
+
+<section class="container">
+  <div class="row">
+    <div class="col-lg-2">
+
+    </div>
+    <div class="col-lg-8">
+      
+      <h1 class=" text-center">Agenda</h1>
+      <p class="text-center lead">Seus contatos estão abaixo</p>
+
+      <div class="row">
+        <div class="col">
+          <div class="alert alert-danger">Um erro qualquer</div>
+        </div>
+
+        <div class="responsive-table">
+          <table class="table my-3">
+            <tr>
+              <td>Luiz</td>
+              <td>Otávio</td>
+              <td>241242424</td>
+              <td>Luizotavio@gmail.com</td>
+            </tr>
+              <tr>
+              <td>Luiz</td>
+              <td>Otávio</td>
+              <td>241242424</td>
+              <td>Luizotavio@gmail.com</td>
+            </tr>
+            <tr>
+              <td>Luiz</td>
+              <td>Otávio</td>
+              <td>241242424</td>
+              <td>Luizotavio@gmail.com</td>
+            </tr>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+</section>
