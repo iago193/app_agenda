@@ -4,10 +4,13 @@ export function  middleware(req, res, next) {
 }
 
 export function checkCsrfError(err, req, res, next) {
-  if (err.code === 'EBADCSRFTOKEN') {
-    return res.status(403).send('❌ CSRF inválido ou expirado.');
+  if (err) {
+    res.render('layout', {
+        title: 'Error',
+        page: '404'
+    });
   }
-  next(err);
+  next();
 }
 
 export function csrfMiddleware(req, res, next) {

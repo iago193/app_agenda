@@ -1,7 +1,6 @@
-export function paginaInicial(req, res) {
-    console.log(req.session.usuario);
+export function home(req, res) {
     res.render('layout', {
-        title: 'Document express',
+        title: 'APP agenda',
         page: 'home'
     });
 }
