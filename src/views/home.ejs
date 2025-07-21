@@ -1,3 +1,5 @@
+<%- include('includes/head') %>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Agenda</a>
@@ -29,10 +31,7 @@
       <h1 class=" text-center">Agenda</h1>
       <p class="text-center lead">Seus contatos estão abaixo</p>
 
-      <div class="row">
-        <div class="col">
-          <div class="alert alert-danger">Um erro qualquer</div>
-        </div>
+      <%- include('includes/messages') %>
 
         <div class="responsive-table">
           <table class="table my-3">
@@ -64,3 +63,7 @@
     </div>
   </div>
 </section>
+
+<%- include('includes/footer') %>
+
+
