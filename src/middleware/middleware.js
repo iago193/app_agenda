@@ -6,10 +6,7 @@ export function  middleware(req, res, next) {
 
 export function checkCsrfError(err, req, res, next) {
   if (err) {
-    res.render('layout', {
-        title: 'Error',
-        page: '404'
-    });
+    res.render('404');
   }
   next();
 }
