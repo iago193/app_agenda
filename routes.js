@@ -1,16 +1,15 @@
 import express from 'express';
 import { home } from './src/controllers/homeController.js';
-import { login,register } from './src/controllers/loginController.js';
-import { checkCsrfError } from './src/middleware/middleware.js';
+import { index, register, login } from './src/controllers/loginController.js';
 
 const route = express.Router();
 
+// Página inicial
 route.get('/', home);
 
-//rotas login
-route.get('/login', login);
-route.get('/404', checkCsrfError);
-
+// Rotas de login
+route.get('/login/index', index);
 route.post('/login/register', register);
+route.post('/login/login', login);
 
 export { route as Router };
