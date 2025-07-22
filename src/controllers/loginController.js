@@ -12,7 +12,7 @@ export async function register(req, res) {
 
         if (login.errors.length > 0) {
             req.flash('errors', login.errors);
-            req.session.save(() => res.redirect(req.get('referer') || '/login/index'));
+            req.session.save(() => res.redirect('/login/index'));
             return;
         }
 
@@ -32,17 +32,22 @@ export async function login(req, res) {
 
         if (login.errors.length > 0) {
             req.flash('errors', login.errors);
-            req.session.save(() => res.redirect(req.get('referer') || '/login/index'));
+            req.session.save(() => res.redirect('/login/index'));
             return;
         }
 
         req.flash('success', 'você logou com sucesso!');
         req.session.user = login.user;
-        req.session.save(() => res.redirect('/login/index'));
+        req.session.save();
+        req.session.save(() => res.redirect('/'));
 
     }catch(e) {
         console.log(e);
         return res.render('404');
     }
+}
+
+export function logout(req, res) {
+    req.session.destroy(() => res.redirect('/login/index'));
 }
 
