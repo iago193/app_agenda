@@ -19,6 +19,12 @@ class Contato {
         this.contato = null;
     }
 
+    static async buscaPorId(id) {
+    if (typeof id !== 'string') return null;
+    const contato = await ContatoModel.findById(id);
+    return contato;
+    }
+
     async register() {
         this.valida();
         if (this.errors.length > 0) return;

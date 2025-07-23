@@ -1,8 +1,7 @@
-import { render } from 'ejs';
 import Contato from '../model/contatoModel.js';
 
 export function indexContato(req, res) {
-    res.render('contato');
+  res.render('contato', { contato: {} });
 }
 
 export async function registerContato(req, res) {
@@ -16,9 +15,20 @@ export async function registerContato(req, res) {
         }
 
         req.flash('success', 'contato registrado com sucesso.');
-        return req.session.save(() => res.redirect('/'));
+        return req.session.save(() => res.redirect(`/contato/index/${contato.contato._id}`));
     } catch (e) {
         console.log(e);
-        return render('404');
+        return res.render('404');
     }
+}
+
+export async function editIndex(req, res){
+    if(!req.params.id) return res.render('404');
+
+    const contato = await Contato.buscaPorId(req.params.id);
+
+    if(!contato) return res.render('404');
+    res.render('contato', {
+        contato: contato
+    });
 }
