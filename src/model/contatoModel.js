@@ -6,7 +6,7 @@ const ContatoSchema = new mongoose.Schema({
     sobrenome: { type: String, required: false, default: '' },
     email: { type: String, required: false, default: '' },
     telefone: { type: String, required: false, default: '' },
-    criadoEm: {type: Date, default: Date.now}
+    criadoEm: { type: Date, default: Date.now }
 });
 
 // Modelo exportado
@@ -21,7 +21,7 @@ class Contato {
 
     async register() {
         this.valida();
-        if(this.errors > 0) return;
+        if (this.errors.length > 0) return;
         this.contato = await ContatoModel.create(this.body);
     }
 
@@ -31,21 +31,31 @@ class Contato {
         if (this.body.email && !validator.isEmail(this.body.email)) {
             this.errors.push('E-mail inválido.');
         }
-        if(!this.body.nome) this.errors.push('Nome é um campo obrigatório.');
-        if(!this.body.nome && !this.body.email) {
-            this.errors.push('Pelo menos um contato precisa ser enviado: e-mail ou telefone');
+        if (!this.body.nome) {
+            this.errors.push('Nome é um campo obrigatório.');
         }
+
+        if (!this.body.email && !this.body.telefone) {
+            this.errors.push('Pelo menos e-mail ou telefone devem ser informados.');
+        }
+
     }
 
     cleanUp() {
+        for (let key in this.body) {
+            if (typeof this.body[key] !== 'string') {
+                this.body[key] = '';
+            }
+        }
 
         this.body = {
-            nome: this.body.nome,
-            sobrenome: this.body.sobrenome,
-            email: this.body.email,
-            telefone: this.body.telefone,
+            nome: this.body.nome.trim(),
+            sobrenome: this.body.sobrenome.trim(),
+            email: this.body.email.trim(),
+            telefone: this.body.telefone.trim()
         };
     }
+
 }
 
 export default Contato;
