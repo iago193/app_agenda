@@ -30,6 +30,13 @@ class Contato {
         return contato;
     }
 
+    static async delete(id) {
+        if(typeof id !== 'string') return;
+
+        const contato = await ContatoModel.findOneAndDelete(id);
+        return contato;
+    }
+
     async edit(id) {
         if(typeof id !== 'string') return;
         this.valida();

@@ -16,6 +16,7 @@
       <%- include('includes/messages') %>
 
         <div class="responsive-table">
+          <% if(contatos.length > 0) { %>
           <table class="table my-3">
             <% contatos.forEach((contato) => { %>
             <tr>
@@ -33,10 +34,13 @@
                   <i class="fas fa-trash-alt"></i>
                 </a>
               </td>
-
             </tr>
             <% }) %>
           </table>
+
+          <% } else { %>
+            <p>Não existem contatos para exibir.</p>
+          <% } %>
         </div>
         
       </div>
