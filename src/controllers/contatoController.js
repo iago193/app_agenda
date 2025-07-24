@@ -1,7 +1,7 @@
 import Contato from '../model/contatoModel.js';
 
 export function indexContato(req, res) {
-  res.render('contato', { contato: {} });
+    res.render('contato', { contato: {} });
 }
 
 export async function registerContato(req, res) {
@@ -22,13 +22,34 @@ export async function registerContato(req, res) {
     }
 }
 
-export async function editIndex(req, res){
-    if(!req.params.id) return res.render('404');
+export async function editIndex(req, res) {
+    if (!req.params.id) return res.render('404');
 
     const contato = await Contato.buscaPorId(req.params.id);
 
-    if(!contato) return res.render('404');
+    if (!contato) return res.render('404');
     res.render('contato', {
         contato: contato
     });
+}
+
+export async function edit(req, res) {
+    try {
+        if (!req.params.id) return res.render('404');
+
+        const contatoInstance = new Contato(req.body);
+        await contatoInstance.edit(req.params.id);
+
+        if (contatoInstance.errors.length > 0) {
+            req.flash('errors', contatoInstance.errors);
+            return req.session.save(() => res.redirect('/contato/index'));
+        }
+
+        req.flash('success', 'Contato editado com sucesso.');
+        return req.session.save(() => res.redirect(`/contato/index/${contatoInstance.contato._id}`));
+        
+    } catch (e) {
+        console.log(e);
+        return res.render('404');
+    }
 }

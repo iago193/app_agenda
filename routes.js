@@ -1,7 +1,7 @@
 import express from 'express';
 import { home } from './src/controllers/homeController.js';
 import { index, register, login, logout } from './src/controllers/loginController.js';
-import { indexContato, registerContato, editIndex } from './src/controllers/contatoController.js'
+import { indexContato, registerContato, editIndex, edit } from './src/controllers/contatoController.js'
 import { loginRequired } from './src/middleware/middleware.js';
 
 const route = express.Router();
@@ -19,5 +19,6 @@ route.get('/login/logout', logout);
 route.get('/contato/index',loginRequired, indexContato);
 route.post('/contato/register', registerContato);
 route.get('/contato/index/:id', editIndex);
+route.post('/contato/edit/:id', edit);
 
 export { route as Router };
