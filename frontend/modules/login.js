@@ -13,11 +13,11 @@ class Login {
         if(!this.form) return;
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
-            this.validade(e);
+            this.valida(e);
         });
     }
 
-    validade(e) {
+    valida(e) {
         const el = e.target;
         const inputEmail = el.querySelector('input[name="email"]');
         const inputPassword = el.querySelector('input[name="password"]');
@@ -37,10 +37,10 @@ class Login {
 
         if(inputPassword.value.length < 3 || inputPassword.value.length > 12) {
             error = true;
-            const password = this.form.querySelector('.textPasswordError');
+            const passwordError = this.form.querySelector('.textPasswordError');
 
-            if (password) {
-                this.createElement(password, '*A senha precisa ter entre 3 e 15 caracteres.');
+            if (passwordError) {
+                this.createElement(passwordError, '*A senha precisa ter entre 3 e 15 caracteres.');
             }
         }
 
